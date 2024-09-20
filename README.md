@@ -1,8 +1,10 @@
-# React + Vite
+# 포켓몬 도감
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+poke api를 사용한 포켓몬스터 도감 프로젝트
 
-Currently, two official plugins are available:
+## 🛠 Skill
+`react` `vite` `yarn` `emotion`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### install package
+`yarn add @emotion/styled`
+`yarn add @emotion/react`
