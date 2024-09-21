@@ -2,13 +2,19 @@ import React from "react";
 import styled from "@emotion/styled";
 import PokeNameChip from "./PokeNameChip";
 import PokeMarkChip from "./PokeMarkChip";
-
-const eximg =
-  "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMDNfNyAg/MDAxNTgzMjE3NTgyOTA4.Biyyr8qvxXiTJnMUKZAp83wtVE1EIwfTvOU3CnMWyIAg.jqc_-BQMbQqXeV7dgo45IlgtUYcZt2GGh1_P39y8Emsg.PNG.gimdh0930/002.png?type=w800";
+import { useNavigate } from "react-router-dom";
 
 const PokeCard = () => {
+  const eximg =
+    "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMDNfNyAg/MDAxNTgzMjE3NTgyOTA4.Biyyr8qvxXiTJnMUKZAp83wtVE1EIwfTvOU3CnMWyIAg.jqc_-BQMbQqXeV7dgo45IlgtUYcZt2GGh1_P39y8Emsg.PNG.gimdh0930/002.png?type=w800";
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/pokemon/이상해씨");
+  };
+
   return (
-    <Item>
+    <Item onClick={handleClick}>
       <Head>
         <PokeNameChip />
       </Head>
@@ -32,6 +38,16 @@ const Item = styled.li`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   flex-direction: column;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  &:active {
+    background-color: rosybrown;
+    opacity: 0.8;
+    transition: background-color 0;
+  }
 `;
 
 const Head = styled.section`
