@@ -26,6 +26,7 @@ poke api를 사용한 포켓몬스터 도감 프로젝트
 `yarn add @emotion/react`
 `yarn add react-router-dom`
 `yarn add axios`
+`yarn add react-infinite-scroll-hook`
 
 ## 📄 Git Commit Convention
 | 태그 이름 | 설명 |
