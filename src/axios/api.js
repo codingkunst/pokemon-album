@@ -2,8 +2,8 @@ import axios from "axios";
 
 const remote = axios.create();
 
-const fetchPokemon = async () => {
-  const baseURL = "https://pokeapi.co/api/v2/pokemon";
+const fetchPokemon = async (nextUrl) => {
+  const baseURL = nextUrl ? nextUrl : "https://pokeapi.co/api/v2/pokemon";
   const response = await remote.get(baseURL);
   return response.data;
 };
