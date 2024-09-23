@@ -1,15 +1,44 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PokeMarkChip from "./PokeMarkChip";
+import { useParams } from "react-router-dom";
+import { fetchPokemonDetail } from "../axios/api";
 
 const PokeDetail = () => {
   const eximg =
     "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMDNfNyAg/MDAxNTgzMjE3NTgyOTA4.Biyyr8qvxXiTJnMUKZAp83wtVE1EIwfTvOU3CnMWyIAg.jqc_-BQMbQqXeV7dgo45IlgtUYcZt2GGh1_P39y8Emsg.PNG.gimdh0930/002.png?type=w800";
 
+  const { name } = useParams();
+  const [pokemon, setPokemon] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const detail = await fetchPokemonDetail(name);
+      setPokemon(detail);
+      setLoading(false);
+    })();
+  }, [name]);
+
+  if (loading) {
+    return (
+      <Container>
+        <ContainerImage>
+          <LoadingMessage>Loading...</LoadingMessage>
+        </ContainerImage>
+        <Divider />
+        <Footer>
+          <PokeMarkChip />
+        </Footer>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <ContainerImage>
-        <Image src={eximg} alt="Loading..." />
+        <Image src={pokemon?.images.dream_world} alt="Loading..." />
       </ContainerImage>
 
       <Divider />
@@ -20,25 +49,37 @@ const PokeDetail = () => {
           <tbody>
             <Tr>
               <Th>번호</Th>
-              <td>No.1</td>
+              <td>No.{pokemon?.id}</td>
             </Tr>
             <Tr>
               <Th>이름</Th>
-              <td>이상해씨</td>
+              <td>{pokemon?.name}</td>
+            </Tr>
+            <Tr>
+              <Th>타입</Th>
+              <td>{pokemon?.types}</td>
+            </Tr>
+            <Tr>
+              <Th>키</Th>
+              <td>{pokemon?.height}m</td>
+            </Tr>
+            <Tr>
+              <Th>몸무게</Th>
+              <td>{pokemon?.weight}kg</td>
             </Tr>
           </tbody>
         </Table>
         <h2>능력치</h2>
         <Table>
           <tbody>
-            <Tr>
-              <Th>공격력</Th>
-              <td>999</td>
-            </Tr>
-            <Tr>
-              <Th>방어력</Th>
-              <td>999</td>
-            </Tr>
+            {pokemon?.stats.map((item) => {
+              return (
+                <Tr key={item.name}>
+                  <Th>{item.name}</Th>
+                  <td>{item.value}</td>
+                </Tr>
+              );
+            })}
           </tbody>
         </Table>
       </Body>
@@ -63,6 +104,7 @@ const ContainerImage = styled.section`
   justify-content: center;
   align-items: center;
   margin: 8px 0;
+  min-height: 300px;
 `;
 
 const Image = styled.img`
@@ -110,6 +152,15 @@ const Footer = styled.section`
   display: flex;
   flex-direction: row;
   margin: 32px 16px;
+`;
+
+const LoadingMessage = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 `;
 
 export default PokeDetail;
