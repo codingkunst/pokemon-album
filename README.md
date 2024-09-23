@@ -16,11 +16,16 @@ poke api를 사용한 포켓몬스터 도감 프로젝트
 ## 트러블슈팅
 - Cannot destructure property 'basename' of 'React2.useContext(...)' as it is null
 - react router dom Link 태그 사용시 해당 컴포넌트가 BrowserRouter 안에 있어야함
+- Cannot read properties of null (reading 'results')
+- 옵셔널 체이닝 연산자 사용해서 해결
+- The requested module '/src/axios/api.js' does not provide an export named 'default'
+-  Cannot read properties of undefined (reading 'toString')
 
 ## install package
 `yarn add @emotion/styled`
 `yarn add @emotion/react`
 `yarn add react-router-dom`
+`yarn add axios`
 
 ## 📄 Git Commit Convention
 | 태그 이름 | 설명 |
